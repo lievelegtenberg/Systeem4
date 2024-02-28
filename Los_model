@@ -1,0 +1,17 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+g = nx.Graph()
+x_size = 10
+y_size = 10
+
+g.add_nodes_from(range(x_size * y_size))
+
+for i in range(x_size * y_size):
+    if (i + 1) % x_size != 0: # Check if not last collum
+        g.add_edge(i, i + 1, weight=1)
+    if i + x_size < x_size * y_size:  # Check if not last row
+        g.add_edge(i, i + x_size, weight=1)
+
+nx.draw_spectral(g, label = True, node_size=100)  # Draw the nodes
+
