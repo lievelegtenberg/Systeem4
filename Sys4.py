@@ -91,7 +91,7 @@ def graph():
     return g
 
 
-graph = graph()
+graph = graph() 
 
 cars = [Car(7, 40)]
 simulation = TrafficSimulation(graph, cars)
