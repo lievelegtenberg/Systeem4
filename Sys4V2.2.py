@@ -1,12 +1,9 @@
 
-
 import networkx as nx
 import random
 import matplotlib.pyplot as plt
-
-
 class Car:
-    def __init__(self, current_node, destination, charge_threshold = 0.5, battery_start = 40, route = None, route_boul = False):
+    def __init__(self, current_node, destination, stations, charge_threshold = 0.5, battery_start = 40, route = None, route_boul = False):
         self.current_node = current_node
         self.battery = battery_start
         self.destination = destination
@@ -14,6 +11,7 @@ class Car:
         self.charge_threshold = charge_threshold
         self.route_boul = route_boul
         self.route = route
+        self.stations = stations
 
     def move(self, graph):
         neighbors = list(graph.neighbors(self.current_node))
@@ -33,11 +31,26 @@ class Car:
         return nx.shortest_path(graph, source=self.current_node, target=self.destination, weight='weight',
                                 method='dijkstra')
 
-    def update_battery(self, graph, route):
-        next_node = route[1]
-        weight = graph.get_edge_data(self.current_node, next_node)['weight']
-        self.battery = self.battery - weight
-        return self.battery
+ #   def update_battery(self, graph, route):
+ #       next_node = route[1]
+ #       weight = graph.get_edge_data(self.current_node, next_node)['weight']
+  #      self.battery = self.battery - weight
+  #      return self.battery
+
+    def find_charger(self, graph):
+        path_length = float('inf')
+        closest_station = None
+        print(self.stations)
+
+        for station in stations:
+                print(station.location)
+                path_length_station = nx.shortest_path_length(graph, source=self.current_node, target=station.location, weight="weight")
+                if path_length_station < path_length:
+                    path_length = path_length_station
+                    closest_station = station
+        return closest_station.location
+
+
 
 class Charging_station:
     def __init__(self, location, busy_state=True):
@@ -47,24 +60,28 @@ class Charging_station:
 
 
 class TrafficSimulation:
-    def __init__(self, graph, cars):
+    def __init__(self, graph, cars, stations):
         self.graph = graph
         self.cars = cars
+        self.stations = stations
 
     def step(self):
         for car in self.cars:
             if car.current_node == car.destination:
-                car.battery = car.battery
+                car.battery = car.battery_start
+                print(car.battery)
                 car.move(self.graph)
+                car.route_boul = False
+
             elif car.battery > (car.battery_start * car.charge_threshold) and car.battery > 0 and car.route_boul == False:
-                # car.update_battery(self.graph, route)
                 print(car.battery)
                 car.move(self.graph)
 
             elif car.battery <= (car.battery_start * car.charge_threshold) and car.battery > 0 and car.route_boul == False:
+                car.destination = car.find_charger(self.graph)
+                print(car.destination)
                 car.route = car.calculate_route(self.graph)
                 car.route_boul = True
-                print(car.route)
 
             elif car.battery <= (car.battery_start * car.charge_threshold) and car.battery > 0 and car.route_boul == True:
                 print(car.route)
@@ -78,7 +95,7 @@ def visualize(graph, cars, stations):
     plt.figure(figsize=(8, 6))
     pos = nx.spectral_layout(graph)
 
-    nx.draw(graph, pos, with_labels=False, node_color='lightblue', node_size=10)
+    nx.draw(graph, pos, with_labels=True, node_color='lightblue', node_size=10)
 
     for car in cars:
         nx.draw_networkx_nodes(graph, pos, nodelist=[car.current_node], node_color='red', node_size=50)
@@ -116,12 +133,14 @@ def place_stations():
     return stations
 
 stations = place_stations()
+print(f'the stations are {stations}')
+
 graph = graph()
 
-cars = [Car(7, stations[1].location)]
-simulation = TrafficSimulation(graph, cars)
+cars = [Car(7, 40, stations)]
+simulation = TrafficSimulation(graph, cars, stations)
 
-for _ in range(20):
+for _ in range(40):
     simulation.step()
     print([(car.current_node, car.destination) for car in cars])
     visualize(graph, cars, stations)

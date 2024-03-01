@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443dae70-97d5-4d87-ba17-a9259244bcbc" name="Changes" comment="basis model">
+    <list default="true" id="443dae70-97d5-4d87-ba17-a9259244bcbc" name="Changes" comment="MOdel met lengte van edges en begin van laadstations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sys4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sys4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sys4V2.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sys4V2.2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.Sys4.executor": "Run",
+    "Python.Sys4V2.2.executor": "Run",
     "Python.scratch_1.executor": "Run",
+    "Python.scratch_2.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowPlots.ShowToolbar": "false",
@@ -82,7 +84,7 @@
       <updated>1707905257736</updated>
       <workItem from="1707905268702" duration="2315000" />
       <workItem from="1709117719720" duration="4149000" />
-      <workItem from="1709126085289" duration="8627000" />
+      <workItem from="1709126085289" duration="15569000" />
     </task>
     <task id="LOCAL-00001" summary="basis model">
       <option name="closed" value="true" />
@@ -100,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709132328179</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="MOdel met lengte van edges en begin van laadstations">
+      <option name="closed" value="true" />
+      <created>1709200446613</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709200446614</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,10 +118,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="basis model" />
-    <option name="LAST_COMMIT_MESSAGE" value="basis model" />
+    <MESSAGE value="MOdel met lengte van edges en begin van laadstations" />
+    <option name="LAST_COMMIT_MESSAGE" value="MOdel met lengte van edges en begin van laadstations" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Systeem4$Sys4V2_2.coverage" NAME="Sys4V2.2 Coverage Results" MODIFIED="1709298144455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Systeem4$Sys4.coverage" NAME="Sys4 Coverage Results" MODIFIED="1709134269678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Systeem4$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1709133458299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/Systeem4$scratch_2.coverage" NAME="scratch_2 Coverage Results" MODIFIED="1709295289732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/Systeem4$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1709220616213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
   </component>
 </project>
