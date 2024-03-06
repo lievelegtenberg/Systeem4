@@ -143,5 +143,5 @@ simulation = TrafficSimulation(graph, cars, stations)
 for _ in range(40):
     simulation.step()
     print([(car.current_node, car.destination) for car in cars])
-    visualize(graph, cars, stations)
+    #visualize(graph, cars, stations)
 
