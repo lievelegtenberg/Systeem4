@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443dae70-97d5-4d87-ba17-a9259244bcbc" name="Changes" comment="MOdel met lengte van edges en begin van laadstations">
+    <list default="true" id="443dae70-97d5-4d87-ba17-a9259244bcbc" name="Changes" comment="Visiualize knalt er uit maar voor de rest werk hij">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sys4V2.2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sys4V2.2.py" afterDir="false" />
     </list>
@@ -41,32 +41,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Sys4.executor": "Run",
-    "Python.Sys4V2.2.executor": "Run",
-    "Python.scratch_1.executor": "Run",
-    "Python.scratch_2.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowPlots.ShowToolbar": "false",
-    "ToolWindowRun.ShowToolbar": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/lieve/PycharmProjects/Systeem4",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "PyScientificConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Sys4.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Sys4V2.2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowPlots.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lieve/PycharmProjects/Systeem4&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JupyterPython"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JupyterPython&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -84,7 +84,11 @@
       <updated>1707905257736</updated>
       <workItem from="1707905268702" duration="2315000" />
       <workItem from="1709117719720" duration="4149000" />
-      <workItem from="1709126085289" duration="15569000" />
+      <workItem from="1709126085289" duration="22446000" />
+      <workItem from="1710261467399" duration="583000" />
+      <workItem from="1711103860889" duration="593000" />
+      <workItem from="1712060891929" duration="2037000" />
+      <workItem from="1713189519664" duration="9131000" />
     </task>
     <task id="LOCAL-00001" summary="basis model">
       <option name="closed" value="true" />
@@ -110,7 +114,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709200446614</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Auto kan station vinden en naartoe rijden!!">
+      <option name="closed" value="true" />
+      <created>1709298267851</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709298267853</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Visiualize knalt er uit maar voor de rest werk hij">
+      <option name="closed" value="true" />
+      <created>1709719539365</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709719539366</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,10 +139,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="basis model" />
     <MESSAGE value="MOdel met lengte van edges en begin van laadstations" />
-    <option name="LAST_COMMIT_MESSAGE" value="MOdel met lengte van edges en begin van laadstations" />
+    <MESSAGE value="Auto kan station vinden en naartoe rijden!!" />
+    <MESSAGE value="Visiualize knalt er uit maar voor de rest werk hij" />
+    <option name="LAST_COMMIT_MESSAGE" value="Visiualize knalt er uit maar voor de rest werk hij" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Systeem4$Sys4V2_2.coverage" NAME="Sys4V2.2 Coverage Results" MODIFIED="1709298144455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Systeem4$Sys4V2_2.coverage" NAME="Sys4V2.2 Coverage Results" MODIFIED="1713265251543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Systeem4$Sys4.coverage" NAME="Sys4 Coverage Results" MODIFIED="1709134269678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Systeem4$scratch_2.coverage" NAME="scratch_2 Coverage Results" MODIFIED="1709295289732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Systeem4$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1709220616213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
