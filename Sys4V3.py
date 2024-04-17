@@ -2,7 +2,6 @@
 import networkx as nx
 import random
 import matplotlib.pyplot as plt
-import mesa.batchrunner as BatchRunner
 
 class Car:
     def __init__(self, current_node, destination, stations, destination_list, total_distance = 0, charger = None,charge_threshold = 0.5, battery_start = 300, route = None, charging_boul = False):
@@ -157,4 +156,3 @@ for _ in range(200):
     simulation.step()
     print([(car.current_node, car.destination) for car in cars])
     #visualize(graph, cars, stations)
-

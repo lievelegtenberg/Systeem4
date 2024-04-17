@@ -1,11 +1,12 @@
-
 import networkx as nx
 import random
 import matplotlib.pyplot as plt
-import mesa.batchrunner as BatchRunner
+import pandas as pd
+
 
 class Car:
-    def __init__(self, current_node, destination, stations, destination_list, total_distance = 0, charger = None,charge_threshold = 0.5, battery_start = 300, route = None, charging_boul = False):
+    def __init__(self, current_node, destination, stations, destination_list, total_distance=0, charger=None,
+                 charge_threshold=0.5, battery_start=300, route=None, charging_boul=False, finised = True ):
         self.current_node = current_node
         self.battery = battery_start
         self.destination = destination
@@ -17,76 +18,86 @@ class Car:
         self.stations = stations
         self.destination_list = destination_list
         self.total_distance = total_distance
-
-    def move(self, graph):
-        neighbors = list(graph.neighbors(self.current_node))
-        next_node = random.choice(neighbors)
-        self.battery = self.battery - self.calculate_weight(graph, next_node)
-        self.total_distance =self.total_distance + self.calculate_weight(graph, next_node)
-        self.current_node = next_node
-        print(self.destination_list)
+        self.finised = finised
 
     def move_to_des(self, graph, route):
+        if not route:
+            print("Route is empty")
+            return
         next_node = route[1]
         self.battery = self.battery - self.calculate_weight(graph, next_node)
         self.total_distance = self.total_distance + self.calculate_weight(graph, next_node)
         self.current_node = next_node
+
     def calculate_weight(self, graph, next_node):
-       weight = graph.get_edge_data(self.current_node, next_node)['weight']
-       return(weight)
+        weight = graph.get_edge_data(self.current_node, next_node)['weight']
+        return (weight)
+
     def calculate_route(self, graph, destination_node):
         return nx.shortest_path(graph, source=self.current_node, target=destination_node, weight='weight',
                                 method='dijkstra')
+
     def find_charger(self, graph):
         path_length = float('inf')
         closest_station = None
-        print(self.stations)
 
         for station in stations:
-                path_length_station = nx.shortest_path_length(graph, source=self.current_node, target=station.location, weight="weight")
-                if path_length_station < path_length:
-                    path_length = path_length_station
-                    closest_station = station
+            path_length_station = nx.shortest_path_length(graph, source=self.current_node, target=station.location,
+                                                          weight="weight")
+            if path_length_station < path_length:
+                path_length = path_length_station
+                closest_station = station
         return closest_station.location
+
 
 class Charging_station:
     def __init__(self, location, busy_state=True):
         self.location = location
         self.busy_state = busy_state
 
+
 class TrafficSimulation:
     def __init__(self, graph, cars, stations):
         self.graph = graph
         self.cars = cars
-        self.stations = stations #the nodes where the car can charge
+        self.stations = stations  #the nodes where the car can charge
 
     def step(self):
         for car in self.cars:
-            print(f'current node {car.current_node}')
-            print(car.battery)
             if len(car.destination_list) == 0:
-                print("List is empty")
-                print(f'total distance is:{car.total_distance}')
+                break
 
-            elif car.current_node == car.destination and car.charging_boul == False: #Car is at destination
+            elif car.current_node == car.destination and car.current_node ==car.charger: #in case the destination is same as charger
+                print('charger and destination are same')
+                car.charging_boul = False
                 car.destination_list = car.destination_list[1:]
-
                 if len(car.destination_list) == 0:
-                    print("List is empty")
+                    break
                 else:
                     car.destination = car.destination_list[0]
                     car.route = car.calculate_route(self.graph, car.destination)
+                    car.move_to_des(self.graph, car.route)
+                    car.route.pop(0)
 
+            elif car.current_node == car.destination and car.charging_boul == False:  #Car is at destination
+                car.destination_list = car.destination_list[1:]
+                if len(car.destination_list) == 0:
+                    break
 
-            elif car.battery >= (car.battery_start * car.charge_threshold) and car.battery > 0 and car.charging_boul == False: #Car moves to destination
-                print(car.route)
+                else:
+                    car.destination = car.destination_list[0]
+                    car.route = car.calculate_route(self.graph, car.destination)
+                    car.move_to_des(self.graph, car.route)
+                    car.route.pop(0)
+
+            elif car.battery >= (car.battery_start * car.charge_threshold) and car.battery > 0 and car.charging_boul == False:  #Car moves to destination
                 car.move_to_des(self.graph, car.route)
                 car.route.pop(0)
 
                 ### MOVING TO CHARGER ##
 
-            elif car.current_node == car.charger and car.charging_boul == True: #Car is at charger
-                car.battery = car.battery_start #battery reset and stands still for a step because its charging
+            elif car.current_node == car.charger and car.charging_boul == True:  #Car is at charger
+                car.battery = car.battery_start  #battery reset and stands still for a step because its charging
                 car.charging_boul = False
                 car.destination = car.destination_list[0]
                 car.route = car.calculate_route(self.graph, car.destination)
@@ -98,12 +109,12 @@ class TrafficSimulation:
                 car.route = car.calculate_route(self.graph, car.charger)
                 car.charging_boul = True
 
-            elif car.battery <= (car.battery_start * car.charge_threshold) and car.battery > 0 and car.charging_boul == True:
-                print(f'car route: {car.route}')
+            elif car.battery <= (
+                    car.battery_start * car.charge_threshold) and car.battery > 0 and car.charging_boul == True:
                 car.move_to_des(self.graph, car.route)
                 car.route.pop(0)
             else:
-                print('car is empty')
+                car.finised = False
 
 
 def visualize(graph, cars, stations):
@@ -123,14 +134,13 @@ def visualize(graph, cars, stations):
     plt.show()
 
 
-
-def graph():
+def set_up_graph():
     g = nx.Graph()
     x_size = 10
     y_size = 10
-    g.add_nodes_from(range(x_size * y_size))
+    g.add_nodes_from(range((x_size * y_size)))
 
-    for i in range(x_size * y_size):
+    for i in range((x_size * y_size)):
         if (i + 1) % x_size != 0:  # Check if not last collum
             g.add_edge(i, i + 1, weight=random.randint(10, 50))
         if i + x_size < x_size * y_size:  # Check if not last row
@@ -138,23 +148,40 @@ def graph():
 
     return g
 
+
 def place_stations():
     stations = []
-    station_list = random.sample(range(1, 101), 5)
+    station_list = random.sample(range(1, 100), 10)
     for i in station_list:
         stations.append(Charging_station(i))
 
     return stations
 
-stations = place_stations()
-print(f'the stations are {stations}')
-graph = graph()
-destinations = [1, 80, 45, 10]
-cars = [Car(1, 1, stations, destinations)]
-simulation = TrafficSimulation(graph, cars, stations)
 
-for _ in range(200):
-    simulation.step()
-    print([(car.current_node, car.destination) for car in cars])
-    #visualize(graph, cars, stations)
+# Create an empty DataFrame to store results
+results_df = pd.DataFrame(columns=['Run', 'Total Distance', 'Finished'])
 
+for run in range(2000):  # Change the range to the number of simulations you want
+    print(f'the run i: {run}')
+    stations = place_stations()
+    graph = set_up_graph()
+    destinations = [1, 80, 45, 10,99]
+    cars = [Car(1, 1, stations, destinations)]
+    simulation = TrafficSimulation(graph, cars, stations)
+
+    for _ in range(2000):
+        simulation.step()
+        #visualize(graph, cars, stations)
+
+    # Append the total distance for this run to the DataFrame
+    total_distance = cars[0].total_distance  # Assuming only one car in the simulation
+    empty = cars[0].finised
+    results_df = pd.concat([results_df, pd.DataFrame({'Run': [run + 1], 'Total Distance': [total_distance], 'Finished':[empty]})])
+
+print(results_df)
+
+plt.figure(figsize=(8,6))
+plt.boxplot(results_df['Total Distance'])
+plt.title('Boxplot of Total Distance')
+plt.ylabel('Values')
+plt.show()
